@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from books.models import Book
+from books.converters import DateConverter
 
 
 def index(request):
@@ -28,12 +29,13 @@ def date_book(request, select_date):
     # Проходим по всем датам. если дата БД не соответствует выбранной на странице,
     # присвоим prev_date значение даты. И так пока не дойдем до выбранной. После
     # проверяем что дата не последняя в списке. И присваем next_date значение следующей даты
+
     for i in range(len(ordered_books)):
-        if ordered_books[i].pub_date != select_date.date():
+        if ordered_books[i].pub_date != DateConverter().to_python(select_date):
             prev_date = ordered_books[i].pub_date
         else:
             if i != len(ordered_books) - 1:
-                next_date = ordered_books[i+1].pub_date
+                next_date = ordered_books[i + 1].pub_date
                 break
 
     context = {"books": books_list,

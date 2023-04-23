@@ -21,6 +21,6 @@ from books.views import books_view, index, date_book
 urlpatterns = [
     path('', index),
     path('books/', books_view, name='books'),
-    path('books/<select_date>', date_book, name='date_book'),
+    path('books/<str:select_date>', date_book, name='date_book'),
     path('admin/', admin.site.urls),
 ]
