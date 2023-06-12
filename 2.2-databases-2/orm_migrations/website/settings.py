@@ -27,6 +27,9 @@ ALLOWED_HOSTS = []
 SITE_ID = 1
 
 
+INTERNAL_IPS = ['127.0.0.1']    # DDT
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -35,11 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'django.contrib.staticfiles',   # DDT
+    'debug_toolbar',                # DDT
+
     'school',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',      # DDT
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -55,7 +61,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [os.path.join(BASE_DIR, 'templates')],
-        'APP_DIRS': True,
+        'APP_DIRS': True,       # DDT
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
@@ -73,9 +79,11 @@ WSGI_APPLICATION = 'website.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_orm_migrations',
+        'NAME': 'dj_2_2_orm_migrations',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'USER': 'dj',
+        'PASSWORD': '75321'
     }
 }
 
@@ -116,7 +124,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
-STATIC_URL = '/static/'
+STATIC_URL = '/static/'     # DDT
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static'),

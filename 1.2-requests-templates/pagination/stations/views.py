@@ -17,8 +17,8 @@ def bus_stations(request):
     # также передайте в контекст список станций на странице
 
     context = {
-    #     'bus_stations': ...,
-    #     'page': ...,
+        #     'bus_stations': ...,
+        #     'page': ...,
     }
 
     bus_file = open(settings.BUS_STATION_CSV, encoding='utf-8')
