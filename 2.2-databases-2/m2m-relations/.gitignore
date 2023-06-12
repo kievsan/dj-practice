@@ -1,0 +1,23 @@
+# IDE specific
+.idea/
+.vscode/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+app/__pycache__/
+first_project/__pycache__/
+
+*.sqlite3
+env/
+venv/
+.venv/
+venv_dj_11/
+
+### Project specific ###
+settings_local.py
+
+### OS specific ###
+.DS_Store
