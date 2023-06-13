@@ -1,6 +1,6 @@
 from django.urls import path
 
-from measurement.views import SensorListCreateAPIView, MeasurementCreateAPIView, SensorRetrieveAPIView
+from measurement.views import SensorListCreateAPIView, SensorRetrieveAPIView, MeasurementCreateAPIView
 
 urlpatterns = [
     path('sensors/', SensorListCreateAPIView.as_view()),

@@ -1,8 +1,8 @@
 from rest_framework import serializers
 
-# необходимые сериализаторы
-
 from measurement.models import Sensor, Measurement
+
+# необходимые сериализаторы
 
 
 # 1,4. Создать датчик. Получить список датчиков
