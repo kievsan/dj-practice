@@ -52,13 +52,31 @@ class StockSerializer(serializers.ModelSerializer):
 
     def update(self, instance, validated_data):
         # достаем связанные данные для других таблиц
+        # в validated_date - json запрос с 'address', 'positions'
+        # в positions  - сохраняем только 'positions'
+
         positions = validated_data.pop('positions')
 
         # обновляем склад по его параметрам
+        # в instance - склад, передаем только поле positions (validated_data пусто)
+
         stock = super().update(instance, validated_data)
 
-        # здесь вам надо обновить связанные таблицы
-        # в нашем случае: таблицу StockProduct
-        # с помощью списка positions
+        # обновим связанные таблицы
+        # StockProduct с помощью списка positions
+
+        # метод update_or_create ищет в БД объект с полями stock и product,
+        # нашел - обновляет остальные поля, указанные в defaults,
+        # нет - создает новый объект
+
+        for position in positions:
+            StockProduct.objects.update_or_create(
+                stock=stock,
+                product=position.get('product'),
+                defaults={
+                    'quantity': position.get('quantity'),
+                    'price': position.get('price'),
+                }
+            )
 
         return stock
