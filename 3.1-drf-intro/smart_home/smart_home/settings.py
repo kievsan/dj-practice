@@ -80,9 +80,11 @@ WSGI_APPLICATION = 'smart_home.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'netology_smart_home',
+        'NAME': 'dj_3_1_smart_home',
         'HOST': '127.0.0.1',
         'PORT': '5432',
+        'USER': 'dj',
+        'PASSWORD': '75321'
     }
 }
 
