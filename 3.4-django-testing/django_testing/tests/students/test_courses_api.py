@@ -8,13 +8,13 @@ from students.models import Course, Student
 URL = r'/api/v1/courses/'
 
 
-def __get_data(url, client, params=False):
+def __get_data(url, client, params=None):
     response = client.get(url, data=params)
     data = response.json()
     return response.status_code, data
 
 
-def __get_random_course_data(list_of_courses, name=False):
+def __get_random_course_data(list_of_courses, name=None):
     random_course = choice(list_of_courses)
     if name:
         return random_course.name
@@ -23,9 +23,9 @@ def __get_random_course_data(list_of_courses, name=False):
 
 @pytest.fixture
 def url_factory():
-    def factory(url, object=False):
-        if object:
-            url += f'{object.id}/'
+    def factory(url, obj=None):
+        if obj:
+            url += f'{obj.id}/'
         return url
     return factory
 
