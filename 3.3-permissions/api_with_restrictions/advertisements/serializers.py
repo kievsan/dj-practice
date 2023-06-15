@@ -50,7 +50,7 @@ class AdvertisementSerializer(serializers.ModelSerializer):
         count_opened = Advertisement.objects.filter(creator=user, status=open_status).count()
         data_status = data.get('status', '')
 
-        if (method in ['POST', 'PATCH'] and data_status == open_status) and count_opened >= limit:
+        if (method == 'POST' or data_status == open_status) and count_opened >= limit:
             raise ValidationError(f'Нельзя иметь более {limit} открытых объявлений')
 
         return data

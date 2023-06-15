@@ -20,7 +20,7 @@ class AdvertisementViewSet(ModelViewSet):
     serializer_class = AdvertisementSerializer
 
     filter_backends = [DjangoFilterBackend]
-    filterset_fields = ['creator', 'status']
+    # filterset_fields = ['creator', 'status']
     filterset_class = AdvertisementFilter
 
     permission_classes = [IsOwnerOrReader, IsAuthenticated]
@@ -32,5 +32,5 @@ class AdvertisementViewSet(ModelViewSet):
     def get_permissions(self):
         """Получение прав для действий."""
         if self.action in ["create", "update", "partial_update"]:
-            return [IsAuthenticated()]
+            return [IsAuthenticated(), IsOwnerOrReader()]
         return []
